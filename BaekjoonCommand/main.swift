@@ -10,22 +10,32 @@ import Foundation
 // *********************
 // [1268] 임시 반장 정하기
 // *********************
-/// TODO 진행중~
 let inputInt = Int(readLine()!)!
-var numClass: [[Int]] = Array(repeating: Array(repeating: 0, count: inputInt), count: inputInt)
+var numClass: [[Int]] = Array(repeating: [Int](), count: inputInt)
+var sameClassCountArray = Array(repeating: 0, count: inputInt)
+var tempArray = [Int]()
 
 for i in 0 ..< inputInt {
-  let inputIntArray = readLine()!.split(separator: " ").map{( Int($0)! )}
-  numClass[i] = inputIntArray
+    let inputIntArray = readLine()!.split(separator: " ").map{ Int($0)! }
+    numClass[i].append(contentsOf: inputIntArray)
 }
 
-//00 > 0
-//10 > 1
-//20 > 2
-//30 > 3
-//40 > 4
+for i in 0 ..< numClass[0].count {
+    tempArray = Array(repeating: 0, count: inputInt)
+    for j in 0 ..< inputInt {
+        tempArray.append(numClass[j][i])
+    }
+    for j in 0 ..< inputInt {
+        let sameCount = tempArray.filter { $0 == numClass[j][i] }.count
+        if sameCount > 1 {
+            sameClassCountArray[j] = sameClassCountArray[j] + sameCount - 1
+        }
+    }
+}
 
-print(numClass)
+let result = (sameClassCountArray.firstIndex(of: sameClassCountArray.max() ?? 0) ?? 0) + 1
+
+print(result)
 
 // *********************
 // [1259] 팰린드롬수
