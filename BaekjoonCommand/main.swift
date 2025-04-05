@@ -11,40 +11,37 @@ import Foundation
 // [1268] 임시 반장 정하기
 // *********************
 
-let inputInt = Int(readLine()!)!
-var numClassArray = [[Int]]()
-var countSameClassDictionary = [Int: [Int]]()
-var countSameClassArray = Array(repeating: 0, count: inputInt)
+let studentCount = Int(readLine()!)!
+let classCount = 5
+var classArray = [[Int]]()
 
-for _ in 0 ..< inputInt {
-  let inputNumClassRow = readLine()?.split(separator: " ").map{ Int($0)! }
-  numClassArray.append(inputNumClassRow!)
-}
-let changedRowAndColNumArray = (0 ..< numClassArray[0].count).map { col in
-  numClassArray.map { $0[col] }
+var maxCount = 0
+var result = 0
+
+for _ in 0 ..< studentCount {
+  let studentClass = readLine()?.split(separator: " ").map{ Int($0)! }
+  classArray.append(studentClass!)
 }
 
-for (_, findSameClassArray) in changedRowAndColNumArray.enumerated() {
-  countSameClassDictionary = [:]
-  for (index, classArray) in findSameClassArray.enumerated() {
-    countSameClassDictionary[classArray, default: []].append(index)
-  }
-  let filteredCountSameClassDictionary = countSameClassDictionary.filter { $0.value.count > 1 }
-  for (sameClassArray) in filteredCountSameClassDictionary.values {
-    for array in sameClassArray {
-      countSameClassArray[array] += 1
+for studentNum in 0 ..< studentCount {
+  var count = 0
+  for otherStudentNum in 0 ..< studentCount {
+    if studentNum == otherStudentNum { continue }
+    for classNum in 0 ..< classCount {
+      if classArray[studentNum][classNum] == classArray[otherStudentNum][classNum] {
+        count += 1
+        break
+      }
     }
   }
-}
-
-let maxCountSameClass = countSameClassArray.max()
-
-for (index, array) in countSameClassArray.enumerated() {
-  if maxCountSameClass == array {
-    print(index + 1)
-    break
+  
+  if count > maxCount {
+    maxCount = count
+    result = studentNum + 1
   }
 }
+
+print(result)
 
 /*
 5
@@ -53,13 +50,48 @@ for (index, array) in countSameClassArray.enumerated() {
 5 5 2 4 4
 6 5 2 6 7
 8 4 2 2 2
- 
+
 (0,0) (0,1) (0,2) (0,3) (0,4)
 (1,0) (1,1) (1,2) (1,3) (1,4)
 (2,0) (2,1) (2,2) (2,3) (2,4)
 (3,0) (3,1) (3,2) (3,3) (3,4)
 (4,0) (4,1) (4,2) (4,3) (4,4)
 */
+
+//let inputInt = Int(readLine()!)!
+//var numClassArray = [[Int]]()
+//var countSameClassDictionary = [Int: [Int]]()
+//var countSameClassArray = Array(repeating: 0, count: inputInt)
+//
+//for _ in 0 ..< inputInt {
+//  let inputNumClassRow = readLine()?.split(separator: " ").map{ Int($0)! }
+//  numClassArray.append(inputNumClassRow!)
+//}
+//let changedRowAndColNumArray = (0 ..< numClassArray[0].count).map { col in
+//  numClassArray.map { $0[col] }
+//}
+//
+//for (_, findSameClassArray) in changedRowAndColNumArray.enumerated() {
+//  countSameClassDictionary = [:]
+//  for (index, classArray) in findSameClassArray.enumerated() {
+//    countSameClassDictionary[classArray, default: []].append(index)
+//  }
+//  let filteredCountSameClassDictionary = countSameClassDictionary.filter { $0.value.count > 1 }
+//  for (sameClassArray) in filteredCountSameClassDictionary.values {
+//    for array in sameClassArray {
+//      countSameClassArray[array] += 1
+//    }
+//  }
+//}
+//
+//let maxCountSameClass = countSameClassArray.max()
+//
+//for (index, array) in countSameClassArray.enumerated() {
+//  if maxCountSameClass == array {
+//    print(index + 1)
+//    break
+//  }
+//}
 
 //let inputInt = Int(readLine()!)!
 //var numClass: [[Int]] = Array(repeating: [Int](), count: inputInt)
@@ -247,7 +279,6 @@ for (index, array) in countSameClassArray.enumerated() {
 //
 //}
 //print(resultCount)
-
 
 // *********************
 // [1157] 단어 공부
@@ -438,7 +469,6 @@ for (index, array) in countSameClassArray.enumerated() {
 //let arr = input.components(separatedBy: " ").map({ Int($0)! }).sorted()
 //print(arr[0] * arr[Int(inputCount)! - 1])
 
-
 // *********************
 // [1032] 명령 프롬프트
 // *********************
@@ -516,5 +546,3 @@ for (index, array) in countSameClassArray.enumerated() {
 //  }
 //
 //}
-
-
