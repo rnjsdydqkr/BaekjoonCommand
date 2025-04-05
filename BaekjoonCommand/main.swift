@@ -10,32 +10,83 @@ import Foundation
 // *********************
 // [1268] 임시 반장 정하기
 // *********************
+
 let inputInt = Int(readLine()!)!
-var numClass: [[Int]] = Array(repeating: [Int](), count: inputInt)
-var sameClassCountArray = Array(repeating: 0, count: inputInt)
-var tempArray = [Int]()
+var numClassArray = [[Int]]()
+var countSameClassDictionary = [Int: [Int]]()
+var countSameClassArray = Array(repeating: 0, count: inputInt)
 
-for i in 0 ..< inputInt {
-    let inputIntArray = readLine()!.split(separator: " ").map{ Int($0)! }
-    numClass[i].append(contentsOf: inputIntArray)
+for _ in 0 ..< inputInt {
+  let inputNumClassRow = readLine()?.split(separator: " ").map{ Int($0)! }
+  numClassArray.append(inputNumClassRow!)
+}
+let changedRowAndColNumArray = (0 ..< numClassArray[0].count).map { col in
+  numClassArray.map { $0[col] }
 }
 
-for i in 0 ..< numClass[0].count {
-    tempArray = Array(repeating: 0, count: inputInt)
-    for j in 0 ..< inputInt {
-        tempArray.append(numClass[j][i])
+for (_, findSameClassArray) in changedRowAndColNumArray.enumerated() {
+  countSameClassDictionary = [:]
+  for (index, classArray) in findSameClassArray.enumerated() {
+    countSameClassDictionary[classArray, default: []].append(index)
+  }
+  let filteredCountSameClassDictionary = countSameClassDictionary.filter { $0.value.count > 1 }
+  for (sameClassArray) in filteredCountSameClassDictionary.values {
+    for array in sameClassArray {
+      countSameClassArray[array] += 1
     }
-    for j in 0 ..< inputInt {
-        let sameCount = tempArray.filter { $0 == numClass[j][i] }.count
-        if sameCount > 1 {
-            sameClassCountArray[j] = sameClassCountArray[j] + sameCount - 1
-        }
-    }
+  }
 }
 
-let result = (sameClassCountArray.firstIndex(of: sameClassCountArray.max() ?? 0) ?? 0) + 1
+let maxCountSameClass = countSameClassArray.max()
 
-print(result)
+for (index, array) in countSameClassArray.enumerated() {
+  if maxCountSameClass == array {
+    print(index + 1)
+    break
+  }
+}
+
+/*
+5
+2 3 1 7 3
+4 1 9 6 8
+5 5 2 4 4
+6 5 2 6 7
+8 4 2 2 2
+ 
+(0,0) (0,1) (0,2) (0,3) (0,4)
+(1,0) (1,1) (1,2) (1,3) (1,4)
+(2,0) (2,1) (2,2) (2,3) (2,4)
+(3,0) (3,1) (3,2) (3,3) (3,4)
+(4,0) (4,1) (4,2) (4,3) (4,4)
+*/
+
+//let inputInt = Int(readLine()!)!
+//var numClass: [[Int]] = Array(repeating: [Int](), count: inputInt)
+//var sameClassCountArray = Array(repeating: 0, count: inputInt)
+//var tempArray = [Int]()
+//
+//for i in 0 ..< inputInt {
+//    let inputIntArray = readLine()!.split(separator: " ").map{ Int($0)! }
+//    numClass[i].append(contentsOf: inputIntArray)
+//}
+//
+//for i in 0 ..< numClass[0].count {
+//    tempArray = Array(repeating: 0, count: inputInt)
+//    for j in 0 ..< inputInt {
+//        tempArray.append(numClass[j][i])
+//    }
+//    for j in 0 ..< inputInt {
+//        let sameCount = tempArray.filter { $0 == numClass[j][i] }.count
+//        if sameCount > 1 {
+//            sameClassCountArray[j] = sameClassCountArray[j] + sameCount - 1
+//        }
+//    }
+//}
+//
+//let result = (sameClassCountArray.firstIndex(of: sameClassCountArray.max() ?? 0) ?? 0) + 1
+//
+//print(result)
 
 // *********************
 // [1259] 팰린드롬수
