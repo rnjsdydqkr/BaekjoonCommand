@@ -11,52 +11,64 @@ import Foundation
 // [1268] 임시 반장 정하기
 // *********************
 
-let studentCount = Int(readLine()!)!
-let classCount = 5
-var classArray = [[Int]]()
+//let studentCount = Int(readLine()!)!
+//var classArray = [[Int]]()
+//
+//for _ in 0 ..< studentCount {
+//    let row = readLine()!.split(separator: " ").map { Int($0)! }
+//  classArray.append(row)
+//}
+//
+//var equalClass = Array(repeating: 0, count: studentCount)
+//
+//for studentNum in 0 ..< studentCount {
+//    for otherStudentNum in (studentNum + 1) ..< studentCount {
+//        for grade in 0 ..< 5 {
+//            if classArray[studentNum][grade] == classArray[otherStudentNum][grade] {
+//                equalClass[studentNum] += 1
+//                equalClass[otherStudentNum] += 1
+//                break
+//            }
+//        }
+//    }
+//}
+//
+//if let maxCount = equalClass.max(),
+//   let leaderIndex = equalClass.firstIndex(of: maxCount) {
+//    print(leaderIndex + 1)
+//}
 
-var maxCount = 0
-var result = 0
-
-for _ in 0 ..< studentCount {
-  let studentClass = readLine()?.split(separator: " ").map{ Int($0)! }
-  classArray.append(studentClass!)
-}
-
-for studentNum in 0 ..< studentCount {
-  var count = 0
-  for otherStudentNum in 0 ..< studentCount {
-    if studentNum == otherStudentNum { continue }
-    for classNum in 0 ..< classCount {
-      if classArray[studentNum][classNum] == classArray[otherStudentNum][classNum] {
-        count += 1
-        break
-      }
-    }
-  }
-  
-  if count > maxCount {
-    maxCount = count
-    result = studentNum + 1
-  }
-}
-
-print(result)
-
-/*
-5
-2 3 1 7 3
-4 1 9 6 8
-5 5 2 4 4
-6 5 2 6 7
-8 4 2 2 2
-
-(0,0) (0,1) (0,2) (0,3) (0,4)
-(1,0) (1,1) (1,2) (1,3) (1,4)
-(2,0) (2,1) (2,2) (2,3) (2,4)
-(3,0) (3,1) (3,2) (3,3) (3,4)
-(4,0) (4,1) (4,2) (4,3) (4,4)
-*/
+//let studentCount = Int(readLine()!)!
+//let classCount = 5
+//var classArray = [[Int]]()
+//
+//var maxCount = 0
+//var result = 0
+//
+//for _ in 0 ..< studentCount {
+//  let studentClass = readLine()?.split(separator: " ").map{ Int($0)! }
+//  classArray.append(studentClass!)
+//}
+//
+//for studentNum in 0 ..< studentCount {
+//  var count = 0
+//  for otherStudentNum in 0 ..< studentCount {
+//    if studentNum == otherStudentNum { continue }
+//    for classNum in 0 ..< classCount {
+//      if classArray[studentNum][classNum] == classArray[otherStudentNum][classNum] {
+//        count += 1
+//        break
+//      }
+//    }
+//  }
+//  
+//  if count > maxCount {
+//    maxCount = count
+//    result = studentNum + 1
+//  }
+//}
+//
+//print(result)
 
 //let inputInt = Int(readLine()!)!
 //var numClassArray = [[Int]]()
