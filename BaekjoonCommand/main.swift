@@ -8,6 +8,22 @@
 import Foundation
 
 // *********************
+// 그리디 1
+// *********************
+
+//var inputTotalChangeMoney = Int(readLine()!)!
+//let changeMoneyArray = [500, 100, 50, 10]
+//var count = 0
+//
+//for changeMoney in changeMoneyArray {
+//  count += inputTotalChangeMoney / changeMoney
+//  inputTotalChangeMoney %= changeMoney
+//  if inputTotalChangeMoney == 0 { break }
+//}
+//
+//print(count)
+
+// *********************
 // [1268] 임시 반장 정하기
 // *********************
 
