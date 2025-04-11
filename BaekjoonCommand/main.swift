@@ -8,24 +8,53 @@
 import Foundation
 
 // *********************
+// 그리디 3
+// *********************
+
+//var data = Array(readLine()!).map{ Int(String($0))! }
+//var result = Int(data[0])
+//
+//for i in 1 ..< data.count {
+//  let num = Int(data[i])
+//  if num <= 1 || result <= 1 {
+//    result += num
+//  } else {
+//    result *= num
+//  }
+//}
+//
+//print(result)
+
+//var inputString = Array(readLine()!).map{ Int(String($0))! }
+//var maxNum = inputString.reduce(0) { partialResult, num in
+//  if (num == 0 || partialResult == 0) || (num == 1 || partialResult == 1) {
+//    partialResult + num
+//  } else {
+//    partialResult * num
+//  }
+//}
+//
+//print(maxNum)
+
+// *********************
 // 그리디 2
 // *********************
 
-var n = Int(readLine()!)!
-let k = Int(readLine()!)!
-var result = 0
-
-while true {
-  var target = (n / k) * k
-  result += (n - target)
-  n = target
-  if n < k { break }
-  result += 1
-  n /= k
-}
-
-result += (n - 1)
-print(result)
+//var n = Int(readLine()!)!
+//let k = Int(readLine()!)!
+//var result = 0
+//
+//while true {
+//  var target = (n / k) * k
+//  result += (n - target)
+//  n = target
+//  if n < k { break }
+//  result += 1
+//  n /= k
+//}
+//
+//result += (n - 1)
+//print(result)
 
 //var N = Int(readLine()!)!
 //let K = Int(readLine()!)!
