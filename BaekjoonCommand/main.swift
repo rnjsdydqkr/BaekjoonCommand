@@ -8,6 +8,42 @@
 import Foundation
 
 // *********************
+// 그리디 2
+// *********************
+
+var n = Int(readLine()!)!
+let k = Int(readLine()!)!
+var result = 0
+
+while true {
+  var target = (n / k) * k
+  result += (n - target)
+  n = target
+  if n < k { break }
+  result += 1
+  n /= k
+}
+
+result += (n - 1)
+print(result)
+
+//var N = Int(readLine()!)!
+//let K = Int(readLine()!)!
+//var count = 0
+//
+//while true {
+//  if N % K == 0 {
+//    N /= K
+//  } else {
+//    N -= 1
+//  }
+//  count += 1
+//  if N == 1 { break }
+//}
+//
+//print(count)
+
+// *********************
 // 그리디 1
 // *********************
 
