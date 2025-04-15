@@ -8,6 +8,58 @@
 import Foundation
 
 // *********************
+// 그리디 4 - 모험가 길드
+// *********************
+
+//var n = Int(readLine()!)!
+//var dataArray = readLine()!.split(separator: " ").map{ Int($0)! }.sorted()
+//
+//var result = 0
+//var count = 0
+//
+//for i in dataArray {
+//  count += 1
+//  if count >= i {
+//    result += 1
+//    count = 0
+//  }
+//}
+//
+//print(result)
+
+//var n = Int(readLine()!)!
+//var array = readLine()!.split(separator: " ").map{ Int($0)! }.sorted()
+//var arrayStartIndex = 0
+//
+//var possibleGroup = 0
+//var groupCount = 0
+//
+//while true {
+//  if array.count == 0 || array.count - Int(array[arrayStartIndex]) < 0 { break }
+//  
+//  for i in arrayStartIndex ..< array.count {
+//    possibleGroup = array.filter { num in
+//      array[i] >= num
+//    }.count
+//    if array[i] <= possibleGroup {
+//      arrayStartIndex = possibleGroup - array[i]
+//      array.removeFirst(array[i])
+//      groupCount += 1
+//      break
+//    } else {
+//      arrayStartIndex = possibleGroup
+//    }
+//    
+//    if arrayStartIndex >= array.count {
+//      arrayStartIndex -= 1
+//      break
+//    }
+//  }
+//}
+//
+//print(groupCount)
+
+// *********************
 // 그리디 3
 // *********************
 
