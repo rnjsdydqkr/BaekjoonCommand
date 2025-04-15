@@ -8,6 +8,97 @@
 import Foundation
 
 // *********************
+// 구현 - 상하좌우
+// *********************
+
+/*
+5
+R R R U D D
+*/
+
+let spaceSize = Int(readLine()!)!
+let moveList = readLine()!.split(separator: " ").map{ String($0) }
+let moveType: [String] = ["R", "U", "L", "D"]
+var dx = [0, -1, 0, 1]
+var dy = [1, 0, -1, 0]
+var (x, y) = (1, 1)
+var (nx, ny) = (0, 0)
+
+for move in moveList {
+  for i in 0 ..< moveType.count {
+    if moveType[i] == move {
+      nx = x + dx[i]
+      ny = y + dy[i]
+    }
+  }
+  if nx < 1 || y < 1 || nx > spaceSize || ny > spaceSize {
+    continue
+  }
+  (x, y) = (nx, ny)
+}
+
+print("\(x) \(y)")
+
+//let spaceSize = Int(readLine()!)!
+//let moveList = readLine()!.split(separator: " ").map{ String($0) }
+//
+//var dx = [0, -1, 0, 1]
+//var dy = [1, 0, -1, 0]
+//var (x, y) = (0, 0)
+//
+//for move in moveList {
+//  switch move {
+//  case "U":
+//    x += dx[1]
+//    y += dy[1]
+//    if x < 0 || y < 0 || x >= spaceSize || y >= spaceSize {
+//      x -= dx[1]
+//      y -= dy[1]
+//    }
+//  case "D":
+//    x += dx[3]
+//    y += dy[3]
+//    if x < 0 || y < 0 || x >= spaceSize || y >= spaceSize {
+//      x += dx[3]
+//      y += dy[3]
+//    }
+//  case "L":
+//    x += dx[2]
+//    y += dy[2]
+//    if x < 0 || y < 0 || x >= spaceSize || y >= spaceSize {
+//      x += dx[2]
+//      y += dy[2]
+//    }
+//  case "R":
+//    x += dx[0]
+//    y += dy[0]
+//    if x < 0 || y < 0 || x >= spaceSize || y >= spaceSize {
+//      x += dx[0]
+//      y += dy[0]
+//    }
+//  default: break
+//  }
+//}
+//
+//print("\(x + 1) \(y + 1)")
+
+
+// *********************
+// 구현
+/*
+ [동, 북, 서, 남]
+ dx = [0, -1, 0, 1]
+ dy = [1, 0, -1, 0]
+ x, y = 2, 2
+ for i in 0 ..< 4 {
+  nx = x + dx[i]
+  ny = y + dy[i]
+ }
+ print(nx, ny)
+*/
+// *********************
+
+// *********************
 // 그리디 4 - 모험가 길드
 // *********************
 
