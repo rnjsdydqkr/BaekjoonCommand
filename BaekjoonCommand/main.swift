@@ -11,25 +11,76 @@ import Foundation
 // 구현 - 왕실의 나이트
 // *********************
 
-let input = Array(readLine()!).map{ String($0) }
-let x = Int(input.last!)!
-let y = Int(["a", "b", "c", "d", "e", "f", "g", "h"].firstIndex(of: input.first)!) + 1
-var (nx, ny) = (0, 0)
+// K1KA5CB7
+// AJKDLSI412K4JSJ9D
 
-let steps = [(-2, -1), (-1, -2), (1, -2), (2, -1), (2, 1), (1, 2), (-1, 2), (-2, 1)]
+let data = readLine()!
+var result = [String]()
+var numSum = 0
 
-var result = 0
-
-for step in steps {
-  nx = x + step.0
-  ny = y + step.1
-  
-  if (nx > 0 && nx <= 8) && (ny > 0 && ny <= 8) {
-    result += 1
+for x in data {
+  if let num = Int(String(x)) {
+    numSum += num
+  } else {
+    result.append(String(x))
   }
 }
 
-print(result)
+result.sort()
+
+if numSum != 0 {
+  result.append(String(numSum))
+}
+
+print(result.joined())
+
+//let input = readLine()!
+//var array = Array(input).map{ String($0) }
+//var numStrArray = [String]()
+//var strArray = [String]()
+//var resultArray = [String]()
+//
+//for arr in array {
+//  if let _ = Int(arr) {
+//    numStrArray.append(arr)
+//  } else {
+//    strArray.append(arr)
+//  }
+//}
+//
+//var numSum = numStrArray.map{ Int($0)! }.reduce(0, +)
+//
+//numStrArray = [String(numSum)]
+//
+//resultArray = strArray.sorted()
+//resultArray.append(contentsOf: numStrArray)
+//let result = resultArray.joined()
+//
+//print(result)
+
+// *********************
+// 구현 - 왕실의 나이트 (완전 탑색, 시뮬레이션)
+// *********************
+
+//let input = Array(readLine()!).map{ String($0) }
+//let x = Int(input.last!)!
+//let y = Int(["a", "b", "c", "d", "e", "f", "g", "h"].firstIndex(of: input.first)!) + 1
+//var (nx, ny) = (0, 0)
+//
+//let steps = [(-2, -1), (-1, -2), (1, -2), (2, -1), (2, 1), (1, 2), (-1, 2), (-2, 1)]
+//
+//var result = 0
+//
+//for step in steps {
+//  nx = x + step.0
+//  ny = y + step.1
+//  
+//  if (nx > 0 && nx <= 8) && (ny > 0 && ny <= 8) {
+//    result += 1
+//  }
+//}
+//
+//print(result)
 
 //let input = Array(readLine()!).map{ String($0) }
 //let x = Int(input.last!)!
