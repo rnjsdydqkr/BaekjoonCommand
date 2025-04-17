@@ -8,22 +8,77 @@
 import Foundation
 
 // *********************
-// 구현 - 시각
+// 구현 - 왕실의 나이트
 // *********************
-let timeHourInput = Int(readLine()!)!
-var count = 0
 
-for i in 0 ... timeHourInput {
-  for j in 0 ..< 60 {
-    for k in 0 ..< 60 {
-      if (String(i) + String(j) + String(k)).contains("3") {
-        count += 1
-      }
-    }
+let input = Array(readLine()!).map{ String($0) }
+let x = Int(input.last!)!
+let y = Int(["a", "b", "c", "d", "e", "f", "g", "h"].firstIndex(of: input.first)!) + 1
+var (nx, ny) = (0, 0)
+
+let steps = [(-2, -1), (-1, -2), (1, -2), (2, -1), (2, 1), (1, 2), (-1, 2), (-2, 1)]
+
+var result = 0
+
+for step in steps {
+  nx = x + step.0
+  ny = y + step.1
+  
+  if (nx > 0 && nx <= 8) && (ny > 0 && ny <= 8) {
+    result += 1
   }
 }
 
-print(count)
+print(result)
+
+//let input = Array(readLine()!).map{ String($0) }
+//let x = Int(input.last!)!
+//let y = Int(["a", "b", "c", "d", "e", "f", "g", "h"].firstIndex(of: input.first)!) + 1
+//var (x1, y1) = (x, y)
+//let dx = [0, -1, 0, 1]
+//let dy = [1, 0, -1, 0]
+//var (nx, ny) = (0, 0)
+//let moveList = ["R", "U", "L", "D"]
+//let nightMoveTotalCaseList = ["RRU", "RRD", "UUR", "UUL", "LLU", "LLD", "DDR", "DDL"]
+//var count = 0
+//
+//for nightMoveTotalCase in nightMoveTotalCaseList {
+//  let nightMoveList = Array(nightMoveTotalCase).map{ String($0) }
+//  for nightMove in nightMoveList {
+//    for i in 0 ..< moveList.count {
+//      if nightMove == moveList[i] {
+//        nx = x1 + dx[i]
+//        ny = y1 + dy[i]
+//      }
+//      (x1, y1) = (nx, ny)
+//    }
+//  }
+//  if (nx > 0 && nx <= 8) && (ny > 0 && ny <= 8) {
+//    count += 1
+//  }
+//  (nx, ny) = (0, 0)
+//  (x1, y1) = (x, y)
+//}
+//
+//print(count)
+
+// *********************
+// 구현 - 시각
+// *********************
+//let timeHourInput = Int(readLine()!)!
+//var count = 0
+//
+//for i in 0 ... timeHourInput {
+//  for j in 0 ..< 60 {
+//    for k in 0 ..< 60 {
+//      if (String(i) + String(j) + String(k)).contains("3") {
+//        count += 1
+//      }
+//    }
+//  }
+//}
+//
+//print(count)
 
 // *********************
 // 구현 - 상하좌우
