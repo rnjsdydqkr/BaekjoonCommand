@@ -8,6 +8,24 @@
 import Foundation
 
 // *********************
+// 구현 - 시각
+// *********************
+let timeHourInput = Int(readLine()!)!
+var count = 0
+
+for i in 0 ... timeHourInput {
+  for j in 0 ..< 60 {
+    for k in 0 ..< 60 {
+      if (String(i) + String(j) + String(k)).contains("3") {
+        count += 1
+      }
+    }
+  }
+}
+
+print(count)
+
+// *********************
 // 구현 - 상하좌우
 // *********************
 
@@ -16,28 +34,28 @@ import Foundation
 R R R U D D
 */
 
-let spaceSize = Int(readLine()!)!
-let moveList = readLine()!.split(separator: " ").map{ String($0) }
-let moveType: [String] = ["R", "U", "L", "D"]
-var dx = [0, -1, 0, 1]
-var dy = [1, 0, -1, 0]
-var (x, y) = (1, 1)
-var (nx, ny) = (0, 0)
-
-for move in moveList {
-  for i in 0 ..< moveType.count {
-    if moveType[i] == move {
-      nx = x + dx[i]
-      ny = y + dy[i]
-    }
-  }
-  if nx < 1 || y < 1 || nx > spaceSize || ny > spaceSize {
-    continue
-  }
-  (x, y) = (nx, ny)
-}
-
-print("\(x) \(y)")
+//let spaceSize = Int(readLine()!)!
+//let moveList = readLine()!.split(separator: " ").map{ String($0) }
+//let moveType: [String] = ["R", "U", "L", "D"]
+//var dx = [0, -1, 0, 1]
+//var dy = [1, 0, -1, 0]
+//var (x, y) = (1, 1)
+//var (nx, ny) = (0, 0)
+//
+//for move in moveList {
+//  for i in 0 ..< moveType.count {
+//    if moveType[i] == move {
+//      nx = x + dx[i]
+//      ny = y + dy[i]
+//    }
+//  }
+//  if nx < 1 || y < 1 || nx > spaceSize || ny > spaceSize {
+//    continue
+//  }
+//  (x, y) = (nx, ny)
+//}
+//
+//print("\(x) \(y)")
 
 //let spaceSize = Int(readLine()!)!
 //let moveList = readLine()!.split(separator: " ").map{ String($0) }
