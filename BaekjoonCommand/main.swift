@@ -5,7 +5,36 @@
 //  Created by 박권용 on 2023/05/22.
 //
 
+// *********************
+// DFS
+// *********************
+
 import Foundation
+
+let graph = [
+  [],
+  [2, 3, 8],
+  [1, 7],
+  [1, 4, 5],
+  [3, 5],
+  [3, 4],
+  [7],
+  [2, 6, 8],
+  [1, 7]
+]
+var visited = Array(repeating: false, count: 9)
+
+func dfs(graph: [[Int]], v: Int, visited: inout [Bool]) {
+  visited[v] = true
+  print("\(v) ", terminator: "")
+  for i in graph[v] {
+    if !visited[i] {
+      dfs(graph: graph, v: i, visited: &visited)
+    }
+  }
+}
+
+dfs(graph: graph, v: 1, visited: &visited)
 
 // *********************
 // 구현 - 왕실의 나이트
@@ -14,25 +43,25 @@ import Foundation
 // K1KA5CB7
 // AJKDLSI412K4JSJ9D
 
-let data = readLine()!
-var result = [String]()
-var numSum = 0
-
-for x in data {
-  if let num = Int(String(x)) {
-    numSum += num
-  } else {
-    result.append(String(x))
-  }
-}
-
-result.sort()
-
-if numSum != 0 {
-  result.append(String(numSum))
-}
-
-print(result.joined())
+//let data = readLine()!
+//var result = [String]()
+//var numSum = 0
+//
+//for x in data {
+//  if let num = Int(String(x)) {
+//    numSum += num
+//  } else {
+//    result.append(String(x))
+//  }
+//}
+//
+//result.sort()
+//
+//if numSum != 0 {
+//  result.append(String(numSum))
+//}
+//
+//print(result.joined())
 
 //let input = readLine()!
 //var array = Array(input).map{ String($0) }
