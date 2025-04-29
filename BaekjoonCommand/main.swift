@@ -8,6 +8,56 @@
 import Foundation
 
 // *********************
+// 음료수 얼려 먹기: 문제 설명
+// *********************
+
+/*
+4 5
+00110
+00011
+11111
+00000
+*/
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! }
+let (n, m) = (input.first!, input.last!)
+var graph: [[Int]] = []
+
+var result = 0
+
+for _ in 0 ..< n {
+  let input = readLine()!
+  let inputArray = Array(input).map{ Int(String($0))! }
+  graph.append(inputArray)
+}
+
+for i in 0 ..< n {
+  for j in 0 ..< m {
+    if dfs(i, j) == true {
+      result += 1
+    }
+  }
+}
+
+func dfs(_ x: Int, _ y: Int) -> Bool {
+  if x <= -1 || x >= n || y <= -1 || y >= m {
+    return false
+  }
+  
+  if graph[x][y] == 0 {
+    graph[x][y] = 1
+    dfs(x - 1, y)
+    dfs(x, y - 1)
+    dfs(x + 1, y)
+    dfs(x, y + 1)
+    return true
+  }
+  return false
+}
+
+print(result)
+
+// *********************
 // BFS
 // *********************
 
