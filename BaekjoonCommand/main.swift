@@ -8,7 +8,61 @@
 import Foundation
 
 // *********************
-// 음료수 얼려 먹기: 문제 설명
+// 미로 탈출
+// *********************
+
+/*
+5 6
+101010
+111111
+000001
+111111
+111111
+*/
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! }
+let (n, m) = (input.first!, input.last!)
+var graph: [[Int]] = []
+
+let dx = [-1, 1, 0, 0]
+let dy = [0, 0, -1, 1]
+var (nx, ny) = (0, 0)
+
+for _ in 0 ..< n {
+  let inputArray = Array(readLine()!).map{ Int(String($0))! }
+  graph.append(inputArray)
+}
+
+print(bfs(0, 0))
+
+func bfs(_ x: Int, _ y: Int) -> Int {
+  var queue: [(Int, Int)] = []
+  queue.append((x, y))
+  
+  while !queue.isEmpty {
+    let (x, y) = queue.removeFirst()
+    
+    for i in 0 ..< 4 {
+      nx = x + dx[i]
+      ny = y + dy[i]
+      
+      if nx < 0 || nx >= n || ny < 0 || ny >= m {
+        continue
+      }
+      if graph[nx][ny] == 0 {
+        continue
+      }
+      if graph[nx][ny] == 1 {
+        graph[nx][ny] = graph[x][y] + 1
+        queue.append((nx, ny))
+      }
+    }
+  }
+  return graph[n - 1][m - 1]
+}
+
+// *********************
+// 음료수 얼려 먹기
 // *********************
 
 /*
@@ -19,43 +73,43 @@ import Foundation
 00000
 */
 
-let input = readLine()!.split(separator: " ").map{ Int($0)! }
-let (n, m) = (input.first!, input.last!)
-var graph: [[Int]] = []
-
-var result = 0
-
-for _ in 0 ..< n {
-  let input = readLine()!
-  let inputArray = Array(input).map{ Int(String($0))! }
-  graph.append(inputArray)
-}
-
-for i in 0 ..< n {
-  for j in 0 ..< m {
-    if dfs(i, j) == true {
-      result += 1
-    }
-  }
-}
-
-func dfs(_ x: Int, _ y: Int) -> Bool {
-  if x <= -1 || x >= n || y <= -1 || y >= m {
-    return false
-  }
-  
-  if graph[x][y] == 0 {
-    graph[x][y] = 1
-    dfs(x - 1, y)
-    dfs(x, y - 1)
-    dfs(x + 1, y)
-    dfs(x, y + 1)
-    return true
-  }
-  return false
-}
-
-print(result)
+//let input = readLine()!.split(separator: " ").map{ Int($0)! }
+//let (n, m) = (input.first!, input.last!)
+//var graph: [[Int]] = []
+//
+//var result = 0
+//
+//for _ in 0 ..< n {
+//  let input = readLine()!
+//  let inputArray = Array(input).map{ Int(String($0))! }
+//  graph.append(inputArray)
+//}
+//
+//for i in 0 ..< n {
+//  for j in 0 ..< m {
+//    if dfs(i, j) == true {
+//      result += 1
+//    }
+//  }
+//}
+//
+//func dfs(_ x: Int, _ y: Int) -> Bool {
+//  if x <= -1 || x >= n || y <= -1 || y >= m {
+//    return false
+//  }
+//  
+//  if graph[x][y] == 0 {
+//    graph[x][y] = 1
+//    dfs(x - 1, y)
+//    dfs(x, y - 1)
+//    dfs(x + 1, y)
+//    dfs(x, y + 1)
+//    return true
+//  }
+//  return false
+//}
+//
+//print(result)
 
 // *********************
 // BFS
@@ -271,7 +325,7 @@ R R R U D D
 //      ny = y + dy[i]
 //    }
 //  }
-//  if nx < 1 || y < 1 || nx > spaceSize || ny > spaceSize {
+//  if nx < 1 || ny < 1 || nx > spaceSize || ny > spaceSize {
 //    continue
 //  }
 //  (x, y) = (nx, ny)
