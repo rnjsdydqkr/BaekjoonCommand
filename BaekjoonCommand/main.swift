@@ -8,6 +8,31 @@
 import Foundation
 
 // *********************
+// 선택 정렬
+// *********************
+
+/*
+ i          0
+ j          1 2 3 4 5 6 7 8 9
+ min_index  0 1 3
+ */
+
+var array = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8]
+var min_index = 0
+
+for i in 0 ..< array.count {
+  min_index = i
+  for j in (i + 1) ..< array.count {
+    if array[min_index] > array[j] {
+      min_index = j
+    }
+  }
+  (array[i], array[min_index]) = (array[min_index], array[i])
+}
+
+print(array)
+
+// *********************
 // 미로 탈출
 // *********************
 
@@ -20,46 +45,46 @@ import Foundation
 111111
 */
 
-let input = readLine()!.split(separator: " ").map{ Int($0)! }
-let (n, m) = (input.first!, input.last!)
-var graph: [[Int]] = []
-
-let dx = [-1, 1, 0, 0]
-let dy = [0, 0, -1, 1]
-var (nx, ny) = (0, 0)
-
-for _ in 0 ..< n {
-  let inputArray = Array(readLine()!).map{ Int(String($0))! }
-  graph.append(inputArray)
-}
-
-print(bfs(0, 0))
-
-func bfs(_ x: Int, _ y: Int) -> Int {
-  var queue: [(Int, Int)] = []
-  queue.append((x, y))
-  
-  while !queue.isEmpty {
-    let (x, y) = queue.removeFirst()
-    
-    for i in 0 ..< 4 {
-      nx = x + dx[i]
-      ny = y + dy[i]
-      
-      if nx < 0 || nx >= n || ny < 0 || ny >= m {
-        continue
-      }
-      if graph[nx][ny] == 0 {
-        continue
-      }
-      if graph[nx][ny] == 1 {
-        graph[nx][ny] = graph[x][y] + 1
-        queue.append((nx, ny))
-      }
-    }
-  }
-  return graph[n - 1][m - 1]
-}
+//let input = readLine()!.split(separator: " ").map{ Int($0)! }
+//let (n, m) = (input.first!, input.last!)
+//var graph: [[Int]] = []
+//
+//let dx = [-1, 1, 0, 0]
+//let dy = [0, 0, -1, 1]
+//var (nx, ny) = (0, 0)
+//
+//for _ in 0 ..< n {
+//  let inputArray = Array(readLine()!).map{ Int(String($0))! }
+//  graph.append(inputArray)
+//}
+//
+//print(bfs(0, 0))
+//
+//func bfs(_ x: Int, _ y: Int) -> Int {
+//  var queue: [(Int, Int)] = []
+//  queue.append((x, y))
+//  
+//  while !queue.isEmpty {
+//    let (x, y) = queue.removeFirst()
+//    
+//    for i in 0 ..< 4 {
+//      nx = x + dx[i]
+//      ny = y + dy[i]
+//      
+//      if nx < 0 || nx >= n || ny < 0 || ny >= m {
+//        continue
+//      }
+//      if graph[nx][ny] == 0 {
+//        continue
+//      }
+//      if graph[nx][ny] == 1 {
+//        graph[nx][ny] = graph[x][y] + 1
+//        queue.append((nx, ny))
+//      }
+//    }
+//  }
+//  return graph[n - 1][m - 1]
+//}
 
 // *********************
 // 음료수 얼려 먹기
