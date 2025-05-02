@@ -8,6 +8,37 @@
 import Foundation
 
 // *********************
+// 삽입 정렬
+// *********************
+
+/*
+7, 5, 9, 0, 3, 1, 6, 2, 4, 8
+5, 7, 9, 0, 3, 1, 6, 2, 4, 8
+5, 7, 0, 9, 3, 1, 6, 2, 4, 8
+5, 0, 7, 9, 3, 1, 6, 2, 4, 8
+0, 5, 7, 9, 3, 1, 6, 2, 4, 8
+0, 5, 7, 3, 9, 1, 6, 2, 4, 8
+...
+ 
+i 1 2 3 4
+j 1 2 b 3 2 1 4 3 2
+*/
+
+var array = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8]
+
+for i in 1 ..< array.count {
+  for j in stride(from: i, to: 0, by: -1) {
+    if array[j] < array[j - 1] {
+      (array[j], array[j - 1]) = (array[j - 1], array[j])
+    } else {
+      break
+    }
+  }
+}
+
+print(array)
+
+// *********************
 // 선택 정렬
 // *********************
 
@@ -17,20 +48,20 @@ import Foundation
  min_index  0 1 3
  */
 
-var array = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8]
-var min_index = 0
-
-for i in 0 ..< array.count {
-  min_index = i
-  for j in (i + 1) ..< array.count {
-    if array[min_index] > array[j] {
-      min_index = j
-    }
-  }
-  (array[i], array[min_index]) = (array[min_index], array[i])
-}
-
-print(array)
+//var array = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8]
+//var min_index = 0
+//
+//for i in 0 ..< array.count {
+//  min_index = i
+//  for j in (i + 1) ..< array.count {
+//    if array[min_index] > array[j] {
+//      min_index = j
+//    }
+//  }
+//  (array[i], array[min_index]) = (array[min_index], array[i])
+//}
+//
+//print(array)
 
 // *********************
 // 미로 탈출
