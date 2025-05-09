@@ -8,6 +8,24 @@
 import Foundation
 
 // *********************
+// 계수 정렬
+// *********************
+
+let array = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5, 2]
+
+var count = Array(repeating: 0, count: array.max()! + 1)
+
+for i in 0 ..< array.count {
+  count[array[i]] += 1
+}
+
+for i in 0 ..< count.count {
+  for _ in 0 ..< count[i] {
+    print(i, terminator: " ")
+  }
+}
+
+// *********************
 // 퀵 정렬
 // *********************
 
@@ -21,37 +39,37 @@ start 0
 end   9
 */
 
-var array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
-var pivot = 0
-var left = 0
-var right = 0
-
-func quick_sort(_ array: inout [Int], _ start: Int, _ end: Int) {
-  if start >= end {
-    return
-  }
-  pivot = start
-  left = start + 1
-  right = end
-  while(left <= right) {
-    while(left <= end && array[left] <= array[pivot]) {
-      left += 1
-    }
-    while(right > start && array[right] >= array[pivot]) {
-      right -= 1
-    }
-    if left > right {
-      (array[right], array[pivot]) = (array[pivot], array[right])
-    } else {
-      (array[left], array[right]) = (array[right], array[left])
-    }
-  }
-  quick_sort(&array, start, right - 1)
-  quick_sort(&array, right + 1, end)
-}
-
-quick_sort(&array, 0, array.count - 1)
-print(array)
+//var array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
+//var pivot = 0
+//var left = 0
+//var right = 0
+//
+//func quick_sort(_ array: inout [Int], _ start: Int, _ end: Int) {
+//  if start >= end {
+//    return
+//  }
+//  pivot = start
+//  left = start + 1
+//  right = end
+//  while(left <= right) {
+//    while(left <= end && array[left] <= array[pivot]) {
+//      left += 1
+//    }
+//    while(right > start && array[right] >= array[pivot]) {
+//      right -= 1
+//    }
+//    if left > right {
+//      (array[right], array[pivot]) = (array[pivot], array[right])
+//    } else {
+//      (array[left], array[right]) = (array[right], array[left])
+//    }
+//  }
+//  quick_sort(&array, start, right - 1)
+//  quick_sort(&array, right + 1, end)
+//}
+//
+//quick_sort(&array, 0, array.count - 1)
+//print(array)
 
 // *********************
 // 삽입 정렬
