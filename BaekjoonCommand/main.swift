@@ -8,6 +8,44 @@
 import Foundation
 
 // *********************
+// 이진 탐색 알고리즘
+// *********************
+
+/*
+10 7
+1 3 5 7 9 11 13 15 17 19
+10 7
+1 3 5 6 9 11 13 15 17 19
+*/
+
+let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+let (n, target) = (input.first!, input.last!)
+let array = readLine()!.split(separator: " ").map{ Int(String($0))! }
+var mid = 0
+var result = 0
+
+if let binarySearchResult = binarySearch(array: array, target: target, start: 0, end: n - 1) {
+  result = binarySearchResult
+  print(result + 1)
+} else {
+  print("원소가 존재하지 않습니다.")
+}
+
+func binarySearch(array: [Int], target: Int, start: Int, end: Int) -> Int? {
+  if start > end {
+    return nil
+  }
+  mid = (start + end) / 2
+  if array[mid] == target {
+    return mid
+  } else if array[mid] > target {
+    return binarySearch(array: array, target: target, start: start, end: mid - 1)
+  } else {
+    return binarySearch(array: array, target: target, start: mid + 1, end: end)
+  }
+}
+
+// *********************
 // 두 배열의 원소 교체
 // *********************
 
@@ -17,23 +55,23 @@ import Foundation
 5 5 6 6 5
 */
 
-let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
-let (n, k) = (input.first!, input.last!)
-var arrayA = readLine()!.split(separator: " ").map{ Int(String($0))! }
-var arrayB = readLine()!.split(separator: " ").map{ Int(String($0))! }
-
-arrayA.sort()
-arrayB.sort(by: >)
-
-for i in 0 ..< k {
-  if arrayA[i] < arrayB[i] {
-    (arrayA[i], arrayB[i]) = (arrayB[i], arrayA[i])
-  } else {
-    break
-  }
-}
-
-print(arrayA.reduce(0) { $0 + $1 })
+//let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//let (n, k) = (input.first!, input.last!)
+//var arrayA = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//var arrayB = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//
+//arrayA.sort()
+//arrayB.sort(by: >)
+//
+//for i in 0 ..< k {
+//  if arrayA[i] < arrayB[i] {
+//    (arrayA[i], arrayB[i]) = (arrayB[i], arrayA[i])
+//  } else {
+//    break
+//  }
+//}
+//
+//print(arrayA.reduce(0) { $0 + $1 })
 
 //let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
 //let (n, k) = (input.first!, input.last!)
