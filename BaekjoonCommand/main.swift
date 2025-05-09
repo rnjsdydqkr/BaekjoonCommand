@@ -8,22 +8,66 @@
 import Foundation
 
 // *********************
+// 두 배열의 원소 교체
+// *********************
+
+/*
+5 3
+1 2 5 4 3
+5 5 6 6 5
+*/
+
+let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+let (n, k) = (input.first!, input.last!)
+var arrayA = readLine()!.split(separator: " ").map{ Int(String($0))! }
+var arrayB = readLine()!.split(separator: " ").map{ Int(String($0))! }
+
+arrayA.sort()
+arrayB.sort(by: >)
+
+for i in 0 ..< k {
+  if arrayA[i] < arrayB[i] {
+    (arrayA[i], arrayB[i]) = (arrayB[i], arrayA[i])
+  } else {
+    break
+  }
+}
+
+print(arrayA.reduce(0) { $0 + $1 })
+
+//let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//let (n, k) = (input.first!, input.last!)
+//var arrayA = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//var arrayB = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//
+//arrayA.sort()
+//arrayB.sort(by: >)
+//
+//for i in 0 ..< k {
+//  if arrayA[i] < arrayB[i] {
+//    arrayA[i] = arrayB[i]
+//  }
+//}
+//
+//print(arrayA.reduce(0) { $0 + $1 })
+
+// *********************
 // 계수 정렬
 // *********************
 
-let array = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5, 2]
-
-var count = Array(repeating: 0, count: array.max()! + 1)
-
-for i in 0 ..< array.count {
-  count[array[i]] += 1
-}
-
-for i in 0 ..< count.count {
-  for _ in 0 ..< count[i] {
-    print(i, terminator: " ")
-  }
-}
+//let array = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5, 2]
+//
+//var count = Array(repeating: 0, count: array.max()! + 1)
+//
+//for i in 0 ..< array.count {
+//  count[array[i]] += 1
+//}
+//
+//for i in 0 ..< count.count {
+//  for _ in 0 ..< count[i] {
+//    print(i, terminator: " ")
+//  }
+//}
 
 // *********************
 // 퀵 정렬
