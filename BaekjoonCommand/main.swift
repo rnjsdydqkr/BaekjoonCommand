@@ -8,6 +8,93 @@
 import Foundation
 
 // *********************
+// 떡볶이 떡 만들기
+// *********************
+
+/*
+4 6
+19 15 10 17
+ 
+10 6
+19 15 10 17 5 8 12 20 25 30
+*/
+
+let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+let (n, m) = (input.first!, input.last!)
+let riceCakes = readLine()!.split(separator: " ").map{ Int(String($0))! }.sorted()
+var calculatedArray = [Int]()
+var result = 0
+var otherResult = 0
+var mid = 0
+var sum = 0
+
+print(riceCakes.reduce(0, { $0 + $1 }))
+
+if let binarySearchResult = binarySearch(array: riceCakes, target: m, start: 0, end: n - 1) {
+  result = binarySearchResult
+  print(result)
+} else {
+  for i in (mid + 1) ..< n {
+    calculatedArray.append(riceCakes[i] - result)
+  }
+  sum = calculatedArray.reduce(0, { $0 + $1 })
+  calculatedArray = []
+  
+  if sum > m {
+    while true {
+      result += 1
+      for riceCake in riceCakes {
+        if riceCake > result {
+          calculatedArray.append(riceCake - result)
+        }
+      }
+      sum = calculatedArray.reduce(0, { $0 + $1 })
+      if sum < m {
+        print(result - 1)
+        break
+      }
+    }
+  } else if sum < m {
+    while true {
+      result -= 1
+      for riceCake in riceCakes {
+        if riceCake > result {
+          calculatedArray.append(riceCake - result)
+        }
+      }
+      sum = calculatedArray.reduce(0, { $0 + $1 })
+      if sum >= m {
+        print(result)
+        break
+      }
+    }
+  }
+  
+}
+
+func binarySearch(array: [Int], target: Int, start: Int, end: Int) -> Int? {
+  if start > end {
+    return nil
+  }
+  mid = (start + end) / 2
+  result = array[mid]
+  
+  for i in (mid + 1) ..< n {
+    calculatedArray.append(riceCakes[i] - result)
+  }
+  sum = calculatedArray.reduce(0, { $0 + $1 })
+  calculatedArray = []
+  
+  if sum == target {
+    return result
+  } else if sum > target {
+    return binarySearch(array: array, target: target, start: mid + 1, end: end)
+  } else {
+    return binarySearch(array: array, target: target, start: start, end: mid - 1)
+  }
+}
+
+// *********************
 // 이진 탐색 알고리즘
 // *********************
 
@@ -18,32 +105,32 @@ import Foundation
 1 3 5 6 9 11 13 15 17 19
 */
 
-let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
-let (n, target) = (input.first!, input.last!)
-let array = readLine()!.split(separator: " ").map{ Int(String($0))! }
-var mid = 0
-var result = 0
-
-if let binarySearchResult = binarySearch(array: array, target: target, start: 0, end: n - 1) {
-  result = binarySearchResult
-  print(result + 1)
-} else {
-  print("원소가 존재하지 않습니다.")
-}
-
-func binarySearch(array: [Int], target: Int, start: Int, end: Int) -> Int? {
-  if start > end {
-    return nil
-  }
-  mid = (start + end) / 2
-  if array[mid] == target {
-    return mid
-  } else if array[mid] > target {
-    return binarySearch(array: array, target: target, start: start, end: mid - 1)
-  } else {
-    return binarySearch(array: array, target: target, start: mid + 1, end: end)
-  }
-}
+//let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//let (n, target) = (input.first!, input.last!)
+//let array = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//var mid = 0
+//var result = 0
+//
+//if let binarySearchResult = binarySearch(array: array, target: target, start: 0, end: n - 1) {
+//  result = binarySearchResult
+//  print(result + 1)
+//} else {
+//  print("원소가 존재하지 않습니다.")
+//}
+//
+//func binarySearch(array: [Int], target: Int, start: Int, end: Int) -> Int? {
+//  if start > end {
+//    return nil
+//  }
+//  mid = (start + end) / 2
+//  if array[mid] == target {
+//    return mid
+//  } else if array[mid] > target {
+//    return binarySearch(array: array, target: target, start: start, end: mid - 1)
+//  } else {
+//    return binarySearch(array: array, target: target, start: mid + 1, end: end)
+//  }
+//}
 
 // *********************
 // 두 배열의 원소 교체
