@@ -13,46 +13,72 @@ import Foundation
 
 let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
 let (n, m) = (input.first!, input.last!)
-let riceCakes = readLine()!.split(separator: " ").map{ Int(String($0))! }
+let array = readLine()!.split(separator: " ").map{ Int(String($0))! }
 var start = 0
-var mid = 0
-var end = riceCakes.max()!
-let array = Array(0...end)
-var culculatedArray = [Int]()
-var sum = 0
+var end = array.max()!
 var result = 0
 
-
-if let binarySearchResult = binarySearch(array: array, target: m, start: start, end: end) {
-  print(binarySearchResult)
-} else {
-  print(result)
-}
-
-func binarySearch(array: [Int], target: Int, start: Int, end: Int) -> Int? {
-  if start > end {
-    return nil
-  }
-  mid = (start + end) / 2
+while(start <= end) {
+  var total = 0
+  let mid = (start + end) / 2
   
-  for riceCake in riceCakes {
-    if riceCake > mid {
-      culculatedArray.append(riceCake - mid)
+  for x in array {
+    if x > mid {
+      total += x - mid
     }
   }
-  sum = culculatedArray.reduce(0) {$0 + $1}
-  culculatedArray = []
-  
-  if sum == target {
-    result = mid
-    return result
-  } else if sum > target {
-    result = mid
-    return binarySearch(array: array, target: target, start: mid + 1, end: end)
+  if total < m {
+    end = mid - 1
   } else {
-    return binarySearch(array: array, target: target, start: start, end: mid - 1)
+    result = mid
+    start = mid + 1
   }
 }
+
+print(result)
+
+//let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//let (n, m) = (input.first!, input.last!)
+//let riceCakes = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//var start = 0
+//var mid = 0
+//var end = riceCakes.max()!
+//let array = Array(0...end)
+//var culculatedArray = [Int]()
+//var sum = 0
+//var result = 0
+//
+//
+//if let binarySearchResult = binarySearch(array: array, target: m, start: start, end: end) {
+//  print(binarySearchResult)
+//} else {
+//  print(result)
+//}
+//
+//func binarySearch(array: [Int], target: Int, start: Int, end: Int) -> Int? {
+//  if start > end {
+//    return nil
+//  }
+//  mid = (start + end) / 2
+//  
+//  for riceCake in riceCakes {
+//    if riceCake > mid {
+//      culculatedArray.append(riceCake - mid)
+//    }
+//  }
+//  sum = culculatedArray.reduce(0) {$0 + $1}
+//  culculatedArray = []
+//  
+//  if sum == target {
+//    result = mid
+//    return result
+//  } else if sum > target {
+//    result = mid
+//    return binarySearch(array: array, target: target, start: mid + 1, end: end)
+//  } else {
+//    return binarySearch(array: array, target: target, start: start, end: mid - 1)
+//  }
+//}
 
 /*
 4 6
