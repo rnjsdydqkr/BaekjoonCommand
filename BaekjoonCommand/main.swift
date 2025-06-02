@@ -8,34 +8,53 @@
 import Foundation
 
 // *********************
+// 정렬된 배열에서 특정 수의 개수 구하기
+// *********************
+/*
+7 2
+1 1 2 2 2 2 3
+*/
+
+let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+let (n, x) = (input.first!, input.last!)
+let array = readLine()!.split(separator: " ").map{ Int(String($0))! }
+
+let count = array.filter{ $0 == x }.count
+if count == 0 {
+  print(-1)
+} else {
+  print(count)
+}
+
+// *********************
 // 떡볶이 떡 만들기
 // *********************
 
-let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
-let (n, m) = (input.first!, input.last!)
-let array = readLine()!.split(separator: " ").map{ Int(String($0))! }
-var start = 0
-var end = array.max()!
-var result = 0
-
-while(start <= end) {
-  var total = 0
-  let mid = (start + end) / 2
-  
-  for x in array {
-    if x > mid {
-      total += x - mid
-    }
-  }
-  if total < m {
-    end = mid - 1
-  } else {
-    result = mid
-    start = mid + 1
-  }
-}
-
-print(result)
+//let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//let (n, m) = (input.first!, input.last!)
+//let array = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//var start = 0
+//var end = array.max()!
+//var result = 0
+//
+//while(start <= end) {
+//  var total = 0
+//  let mid = (start + end) / 2
+//  
+//  for x in array {
+//    if x > mid {
+//      total += x - mid
+//    }
+//  }
+//  if total < m {
+//    end = mid - 1
+//  } else {
+//    result = mid
+//    start = mid + 1
+//  }
+//}
+//
+//print(result)
 
 //let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
 //let (n, m) = (input.first!, input.last!)
