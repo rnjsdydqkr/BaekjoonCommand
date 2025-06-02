@@ -18,13 +18,27 @@ import Foundation
 let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
 let (n, x) = (input.first!, input.last!)
 let array = readLine()!.split(separator: " ").map{ Int(String($0))! }
+var count = 0
 
-let count = array.filter{ $0 == x }.count
-if count == 0 {
-  print(-1)
+if let firstIndex = array.firstIndex(of: x),
+   let lastIndex = array.lastIndex(of: x) {
+  count = Array(firstIndex...lastIndex).count
 } else {
-  print(count)
+  count = -1
 }
+
+print(count)
+
+//let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//let (n, x) = (input.first!, input.last!)
+//let array = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//
+//let count = array.filter{ $0 == x }.count
+//if count == 0 {
+//  print(-1)
+//} else {
+//  print(count)
+//}
 
 // *********************
 // 떡볶이 떡 만들기
