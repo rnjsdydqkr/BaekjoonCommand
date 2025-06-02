@@ -11,6 +11,49 @@ import Foundation
 // 떡볶이 떡 만들기
 // *********************
 
+let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+let (n, m) = (input.first!, input.last!)
+let riceCakes = readLine()!.split(separator: " ").map{ Int(String($0))! }
+var start = 0
+var mid = 0
+var end = riceCakes.max()!
+let array = Array(0...end)
+var culculatedArray = [Int]()
+var sum = 0
+var result = 0
+
+
+if let binarySearchResult = binarySearch(array: array, target: m, start: start, end: end) {
+  print(binarySearchResult)
+} else {
+  print(result)
+}
+
+func binarySearch(array: [Int], target: Int, start: Int, end: Int) -> Int? {
+  if start > end {
+    return nil
+  }
+  mid = (start + end) / 2
+  
+  for riceCake in riceCakes {
+    if riceCake > mid {
+      culculatedArray.append(riceCake - mid)
+    }
+  }
+  sum = culculatedArray.reduce(0) {$0 + $1}
+  culculatedArray = []
+  
+  if sum == target {
+    result = mid
+    return result
+  } else if sum > target {
+    result = mid
+    return binarySearch(array: array, target: target, start: mid + 1, end: end)
+  } else {
+    return binarySearch(array: array, target: target, start: start, end: mid - 1)
+  }
+}
+
 /*
 4 6
 19 15 10 17
@@ -19,80 +62,80 @@ import Foundation
 19 15 10 17 5 8 12 20 25 30
 */
 
-let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
-let (n, m) = (input.first!, input.last!)
-let riceCakes = readLine()!.split(separator: " ").map{ Int(String($0))! }.sorted()
-var calculatedArray = [Int]()
-var result = 0
-var otherResult = 0
-var mid = 0
-var sum = 0
-
-print(riceCakes.reduce(0, { $0 + $1 }))
-
-if let binarySearchResult = binarySearch(array: riceCakes, target: m, start: 0, end: n - 1) {
-  result = binarySearchResult
-  print(result)
-} else {
-  for i in (mid + 1) ..< n {
-    calculatedArray.append(riceCakes[i] - result)
-  }
-  sum = calculatedArray.reduce(0, { $0 + $1 })
-  calculatedArray = []
-  
-  if sum > m {
-    while true {
-      result += 1
-      for riceCake in riceCakes {
-        if riceCake > result {
-          calculatedArray.append(riceCake - result)
-        }
-      }
-      sum = calculatedArray.reduce(0, { $0 + $1 })
-      if sum < m {
-        print(result - 1)
-        break
-      }
-    }
-  } else if sum < m {
-    while true {
-      result -= 1
-      for riceCake in riceCakes {
-        if riceCake > result {
-          calculatedArray.append(riceCake - result)
-        }
-      }
-      sum = calculatedArray.reduce(0, { $0 + $1 })
-      if sum >= m {
-        print(result)
-        break
-      }
-    }
-  }
-  
-}
-
-func binarySearch(array: [Int], target: Int, start: Int, end: Int) -> Int? {
-  if start > end {
-    return nil
-  }
-  mid = (start + end) / 2
-  result = array[mid]
-  
-  for i in (mid + 1) ..< n {
-    calculatedArray.append(riceCakes[i] - result)
-  }
-  sum = calculatedArray.reduce(0, { $0 + $1 })
-  calculatedArray = []
-  
-  if sum == target {
-    return result
-  } else if sum > target {
-    return binarySearch(array: array, target: target, start: mid + 1, end: end)
-  } else {
-    return binarySearch(array: array, target: target, start: start, end: mid - 1)
-  }
-}
+//let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//let (n, m) = (input.first!, input.last!)
+//let riceCakes = readLine()!.split(separator: " ").map{ Int(String($0))! }.sorted()
+//var calculatedArray = [Int]()
+//var result = 0
+//var otherResult = 0
+//var mid = 0
+//var sum = 0
+//
+//print(riceCakes.reduce(0, { $0 + $1 }))
+//
+//if let binarySearchResult = binarySearch(array: riceCakes, target: m, start: 0, end: n - 1) {
+//  result = binarySearchResult
+//  print(result)
+//} else {
+//  for i in (mid + 1) ..< n {
+//    calculatedArray.append(riceCakes[i] - result)
+//  }
+//  sum = calculatedArray.reduce(0, { $0 + $1 })
+//  calculatedArray = []
+//  
+//  if sum > m {
+//    while true {
+//      result += 1
+//      for riceCake in riceCakes {
+//        if riceCake > result {
+//          calculatedArray.append(riceCake - result)
+//        }
+//      }
+//      sum = calculatedArray.reduce(0, { $0 + $1 })
+//      if sum < m {
+//        print(result - 1)
+//        break
+//      }
+//    }
+//  } else if sum < m {
+//    while true {
+//      result -= 1
+//      for riceCake in riceCakes {
+//        if riceCake > result {
+//          calculatedArray.append(riceCake - result)
+//        }
+//      }
+//      sum = calculatedArray.reduce(0, { $0 + $1 })
+//      if sum >= m {
+//        print(result)
+//        break
+//      }
+//    }
+//  }
+//  
+//}
+//
+//func binarySearch(array: [Int], target: Int, start: Int, end: Int) -> Int? {
+//  if start > end {
+//    return nil
+//  }
+//  mid = (start + end) / 2
+//  result = array[mid]
+//  
+//  for i in (mid + 1) ..< n {
+//    calculatedArray.append(riceCakes[i] - result)
+//  }
+//  sum = calculatedArray.reduce(0, { $0 + $1 })
+//  calculatedArray = []
+//  
+//  if sum == target {
+//    return result
+//  } else if sum > target {
+//    return binarySearch(array: array, target: target, start: mid + 1, end: end)
+//  } else {
+//    return binarySearch(array: array, target: target, start: start, end: mid - 1)
+//  }
+//}
 
 // *********************
 // 이진 탐색 알고리즘
