@@ -8,6 +8,47 @@
 import Foundation
 
 // *********************
+// 피보나치 수열: 단순 재귀 소스코드
+// 1 1 2 3 5 8 13 21 34 55
+// *********************
+
+var d = Array(repeating: 0, count: 100)
+let n = 90
+d[1] = 1
+d[2] = 1
+
+for i in 3 ... n {
+  d[i] = d[i - 1] + d[i - 2]
+}
+
+print(d[n])
+
+//var d = Array(repeating: 0, count: 100)
+//
+//func fibo(_ x: Int) -> Int {
+//  if x == 1 || x == 2 {
+//    return 1
+//  }
+//  if d[x] != 0 {
+//    return d[x]
+//  }
+//  
+//  d[x] = fibo(x - 1) + fibo(x - 2)
+//  return d[x]
+//}
+//
+//print(fibo(92))
+
+//func fibo(_ x: Int) -> Int {
+//  if x == 1 || x == 2 {
+//    return 1
+//  }
+//  return fibo(x - 1) + fibo(x - 2)
+//}
+//
+//print(fibo(10))
+
+// *********************
 // 정렬된 배열에서 특정 수의 개수 구하기
 // *********************
 /*
@@ -15,19 +56,19 @@ import Foundation
 1 1 2 2 2 2 3
 */
 
-let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
-let (n, x) = (input.first!, input.last!)
-let array = readLine()!.split(separator: " ").map{ Int(String($0))! }
-var count = 0
-
-if let firstIndex = array.firstIndex(of: x),
-   let lastIndex = array.lastIndex(of: x) {
-  count = Array(firstIndex...lastIndex).count
-} else {
-  count = -1
-}
-
-print(count)
+//let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//let (n, x) = (input.first!, input.last!)
+//let array = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//var count = 0
+//
+//if let firstIndex = array.firstIndex(of: x),
+//   let lastIndex = array.lastIndex(of: x) {
+//  count = Array(firstIndex...lastIndex).count
+//} else {
+//  count = -1
+//}
+//
+//print(count)
 
 //let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
 //let (n, x) = (input.first!, input.last!)
