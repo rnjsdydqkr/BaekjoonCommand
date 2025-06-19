@@ -12,17 +12,36 @@ import Foundation
 // 1 1 2 3 5 8 13 21 34 55
 // *********************
 
+// 탑다운(하향식) 다이나믹 프로그래밍 메모이제이션 동작 분석
 var d = Array(repeating: 0, count: 100)
-let n = 90
-d[1] = 1
-d[2] = 1
 
-for i in 3 ... n {
-  d[i] = d[i - 1] + d[i - 2]
+func fibo(_ x: Int) -> Int {
+  print("f(\(x))", terminator: " ")
+  if x == 1 || x == 2 {
+    return 1
+  }
+  if d[x] != 0 {
+    return d[x]
+  }
+  d[x] = fibo(x - 1) + fibo(x - 2)
+  return d[x]
 }
 
-print(d[n])
+fibo(6)
 
+// 보텀업(상향식) 다이나믹 프로그래밍
+//var d = Array(repeating: 0, count: 100)
+//let n = 90
+//d[1] = 1
+//d[2] = 1
+//
+//for i in 3 ... n {
+//  d[i] = d[i - 1] + d[i - 2]
+//}
+//
+//print(d[n])
+
+// 탑다운(하향식) 다이나믹 프로그래밍 (메모이제이션)
 //var d = Array(repeating: 0, count: 100)
 //
 //func fibo(_ x: Int) -> Int {
