@@ -8,29 +8,73 @@
 import Foundation
 
 // *********************
+// 다이나믹 프로그래밍: 효율적인 화폐 구성
+// *********************
+
+/*
+2 17
+2
+3
+3 4
+3
+5
+7
+ 
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+2 3 5
+*/
+
+let inputArray = readLine()!.split(separator: " ").map{ Int(String($0))! }
+let (n, m) = (inputArray.first!, inputArray.last!)
+var array = Array(repeating: 0, count: n)
+var d = Array(repeating: 10001, count: m + 1)
+d[0] = 0
+
+for i in 0 ..< n {
+  let input = Int(readLine()!)!
+  array[i] = input
+}
+
+for i in 0 ..< n {
+  if array[i] < m + 1 {
+    for j in array[i] ..< m + 1 {
+      if d[j - array[i]] != 10001 {
+        d[j] = min(d[j], d[j - array[i]] + 1)
+      }
+    }
+  }
+}
+
+if d[m] != 10001 {
+  print(d[m])
+} else {
+  print(-1)
+}
+
+// *********************
 // 다이나믹 프로그래밍: 1로 만들기
 // *********************
 
 // 26
 // an = min(an-1, an/2, an/3, an/5) + 1
 
-let x = Int(String(readLine()!))!
-var d = Array(repeating: 0, count: 30001)
-
-for i in 2 ..< x + 1 {
-  d[i] = d[i - 1] + 1
-  if i % 2 == 0 {
-    d[i] = min(d[i], d[i / 2] + 1)
-  }
-  if i % 3 == 0 {
-    d[i] = min(d[i], d[i / 3] + 1)
-  }
-  if i % 5 == 0 {
-    d[i] = min(d[i], d[i / 5] + 1)
-  }
-}
-
-print(d[x])
+//let x = Int(String(readLine()!))!
+//var d = Array(repeating: 0, count: 30001)
+//
+//for i in 2 ..< x + 1 {
+//  d[i] = d[i - 1] + 1
+//  if i % 2 == 0 {
+//    d[i] = min(d[i], d[i / 2] + 1)
+//  }
+//  if i % 3 == 0 {
+//    d[i] = min(d[i], d[i / 3] + 1)
+//  }
+//  if i % 5 == 0 {
+//    d[i] = min(d[i], d[i / 5] + 1)
+//  }
+//}
+//
+//print(d[x])
 
 // *********************
 // 다이나믹 프로그래밍: 개미 전사
