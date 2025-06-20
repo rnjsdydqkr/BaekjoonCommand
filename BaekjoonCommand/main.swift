@@ -8,26 +8,67 @@
 import Foundation
 
 // *********************
+// 다이나믹 프로그래밍: 개미 전사
+// *********************
+
+// 4
+// 1 3 1 5
+// an = an + an-2 + ...
+// an = an-1 + an-3 ...
+
+//let foodFactoryCount = Int(readLine()!)!
+//let foodFactoryList = readLine()!.split(separator: " ").map{ Int($0)! }
+//var d = Array(repeating: 0, count: 100)
+//d[0] = foodFactoryList[0]
+//d[1] = max(foodFactoryList[0], foodFactoryList[1])
+//
+//for i in 2 ..< foodFactoryCount {
+//  d[i] = max(d[i - 1], d[i - 2] + foodFactoryList[i])
+//}
+//
+//print(d[foodFactoryCount - 1])
+
+//let foodFactoryCount = Int(readLine()!)!
+//let foodFactoryList = readLine()!.split(separator: " ").map{ Int($0)! }
+//var (even, odd) = (0, 0)
+//
+//func getFood(_ x: Int) -> Int {
+//  (even, odd) = (0, 0)
+//  for (index, foodFactory) in foodFactoryList.enumerated() {
+//    if index % 2 == 0 {
+//      even += foodFactory
+//    } else {
+//      odd += foodFactory
+//    }
+//  }
+//  
+//  return max(even, odd)
+//}
+//
+//print(getFood(foodFactoryCount - 1))
+
+
+// *********************
 // 피보나치 수열: 단순 재귀 소스코드
 // 1 1 2 3 5 8 13 21 34 55
 // *********************
 
 // 탑다운(하향식) 다이나믹 프로그래밍 메모이제이션 동작 분석
-var d = Array(repeating: 0, count: 100)
-
-func fibo(_ x: Int) -> Int {
-  print("f(\(x))", terminator: " ")
-  if x == 1 || x == 2 {
-    return 1
-  }
-  if d[x] != 0 {
-    return d[x]
-  }
-  d[x] = fibo(x - 1) + fibo(x - 2)
-  return d[x]
-}
-
-fibo(6)
+//var d = Array(repeating: 0, count: 100)
+//
+//func fibo(_ x: Int) -> Int {
+//  print("f(\(x))", terminator: " ")
+//  if x == 1 || x == 2 {
+//    return 1
+//  }
+//  if d[x] != 0 {
+//    return d[x]
+//  }
+//  d[x] = fibo(x - 1) + fibo(x - 2)
+//  return d[x]
+//}
+//
+//fibo(6)
 
 // 보텀업(상향식) 다이나믹 프로그래밍
 //var d = Array(repeating: 0, count: 100)
