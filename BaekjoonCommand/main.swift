@@ -5,7 +5,123 @@
 //  Created by 박권용 on 2023/05/22.
 //
 
-import Foundation
+// *********************
+// 다이나믹 프로그래밍: 금광
+// *********************
+
+/*
+1
+3 4
+1 3 3 2 2 1 4 1 0 6 4 7 (1 3 3 100 2 1 4 1 0 6 4 7)
+ 
+2
+3 4
+1 3 3 2 2 1 4 1 0 6 4 7
+4 4
+1 3 1 5 2 2 4 1 5 0 2 3 0 6 1 2
+*/
+
+var resultPrint: [Int] = []
+
+for _ in 0 ..< Int(readLine()!)! {
+    let inputMrix = readLine()!.split(separator: " ").map{ Int(String($0))! }
+    let (n, m) = (inputMrix.first!, inputMrix.last!)
+    let inputArray = readLine()!.split(separator: " ").map{ Int(String($0))! }
+    var array: [Int] = []
+    var dp: [[Int]] = []
+    var result = 0
+    
+    for list in inputArray {
+        array.append(list)
+      if array.count == m {
+          dp.append(array)
+          array = []
+      }
+    }
+    
+    var left_up = 0
+    var left_down = 0
+    var left = 0
+    for j in 1 ..< m {
+        for i in 0 ..< n {
+            if i == 0 {
+                left_up = 0
+            } else {
+                left_up = dp[i - 1][j - 1]
+            }
+            if i == n - 1 {
+                left_down = 0
+            } else {
+                left_down = dp[i + 1][j - 1]
+            }
+            left = dp[i][j - 1]
+            dp[i][j] = dp[i][j] + max(left_up, left, left_down)
+        }
+    }
+    for i in 0 ..< n {
+        result = max(result, dp[i][m - 1])
+    }
+    resultPrint.append(result)
+}
+
+for result in resultPrint {
+    print(result)
+}
+
+/* [Test] */
+//let moveType = ["UR", "R", "DR"]
+//let dx = [-1, 0, 1]
+//let dy = [1, 1, 1]
+//var (x, y) = (0, 0)
+//var (nx, ny) = (0, 0)
+//var d: [Int] = []
+//var tempD: [Int] = []
+//var tempResult: [Int] = []
+//
+//let testCase = Int(readLine()!)!
+//for _ in 0 ..< testCase {
+//  let inputMrix = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//  let (n, m) = (inputMrix.first!, inputMrix.last!)
+//  let inputArray = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//  var array: [[Int]] = []
+//  d = Array(repeating: 0, count: m)
+//
+//  var rowArray: [Int] = []
+//  for list in inputArray {
+//    rowArray.append(list)
+//    if rowArray.count == m {
+//      array.append(rowArray)
+//      rowArray = []
+//    }
+//  }
+//  
+//  for i in 0 ..< n {
+//    tempD.append(array[i][0])
+//  }
+//  d[0] = tempD.max() ?? 0
+//  tempD = []
+//  
+//  for j in 0 ..< m {
+//    for i in 0 ..< n {
+//      tempD.append(array[i][j])
+//      for k in 0 ..< moveType.count {
+//        nx = i + dx[k]
+//        ny = j + dy[k]
+//        
+//        if (nx >= 0 && nx < n) && (ny >= 0 && ny < m) {
+//          tempResult.append(array[nx][ny])
+//        }
+//      }
+//      tempD.append(tempResult.max() ?? 0)
+//      tempResult = []
+//    }
+//    d.append(tempD.reduce(0, { $0 + $1 }))
+//    tempD = []
+//  }
+//  
+//  print(d)
+//
+//}
 
 // *********************
 // 다이나믹 프로그래밍: 효율적인 화폐 구성
@@ -24,32 +140,32 @@ import Foundation
 2 3 5
 */
 
-let inputArray = readLine()!.split(separator: " ").map{ Int(String($0))! }
-let (n, m) = (inputArray.first!, inputArray.last!)
-var array = Array(repeating: 0, count: n)
-var d = Array(repeating: 10001, count: m + 1)
-d[0] = 0
-
-for i in 0 ..< n {
-  let input = Int(readLine()!)!
-  array[i] = input
-}
-
-for i in 0 ..< n {
-  if array[i] < m + 1 {
-    for j in array[i] ..< m + 1 {
-      if d[j - array[i]] != 10001 {
-        d[j] = min(d[j], d[j - array[i]] + 1)
-      }
-    }
-  }
-}
-
-if d[m] != 10001 {
-  print(d[m])
-} else {
-  print(-1)
-}
+//let inputArray = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//let (n, m) = (inputArray.first!, inputArray.last!)
+//var array = Array(repeating: 0, count: n)
+//var d = Array(repeating: 10001, count: m + 1)
+//d[0] = 0
+//
+//for i in 0 ..< n {
+//  let input = Int(readLine()!)!
+//  array[i] = input
+//}
+//
+//for i in 0 ..< n {
+//  if array[i] < m + 1 {
+//    for j in array[i] ..< m + 1 {
+//      if d[j - array[i]] != 10001 {
+//        d[j] = min(d[j], d[j - array[i]] + 1)
+//      }
+//    }
+//  }
+//}
+//
+//if d[m] != 10001 {
+//  print(d[m])
+//} else {
+//  print(-1)
+//}
 
 // *********************
 // 다이나믹 프로그래밍: 1로 만들기
