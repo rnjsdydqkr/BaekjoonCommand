@@ -6,6 +6,31 @@
 //
 
 // *********************
+// 다이나믹 프로그래밍: 병사 배치하기: 문제 설명
+// *********************
+
+/*
+7
+15 11 4 8 5 2 4
+*/
+
+let n = Int(readLine()!)!
+var array = readLine()!.split(separator: " ").map{ Int(String($0))! }
+array.reverse()
+
+var dp = Array(repeating: 1, count: n)
+
+for i in 1 ..< n {
+    for j in 0 ..< i {
+        if array[j] < array[i] {
+            dp[i] = max(dp[i], dp[j] + 1)
+        }
+    }
+}
+
+print(n - dp.max()!)
+
+// *********************
 // 다이나믹 프로그래밍: 금광
 // *********************
 
@@ -21,52 +46,52 @@
 1 3 1 5 2 2 4 1 5 0 2 3 0 6 1 2
 */
 
-var resultPrint: [Int] = []
-
-for _ in 0 ..< Int(readLine()!)! {
-    let inputMrix = readLine()!.split(separator: " ").map{ Int(String($0))! }
-    let (n, m) = (inputMrix.first!, inputMrix.last!)
-    let inputArray = readLine()!.split(separator: " ").map{ Int(String($0))! }
-    var array: [Int] = []
-    var dp: [[Int]] = []
-    var result = 0
-    
-    for list in inputArray {
-        array.append(list)
-      if array.count == m {
-          dp.append(array)
-          array = []
-      }
-    }
-    
-    var left_up = 0
-    var left_down = 0
-    var left = 0
-    for j in 1 ..< m {
-        for i in 0 ..< n {
-            if i == 0 {
-                left_up = 0
-            } else {
-                left_up = dp[i - 1][j - 1]
-            }
-            if i == n - 1 {
-                left_down = 0
-            } else {
-                left_down = dp[i + 1][j - 1]
-            }
-            left = dp[i][j - 1]
-            dp[i][j] = dp[i][j] + max(left_up, left, left_down)
-        }
-    }
-    for i in 0 ..< n {
-        result = max(result, dp[i][m - 1])
-    }
-    resultPrint.append(result)
-}
-
-for result in resultPrint {
-    print(result)
-}
+//var resultPrint: [Int] = []
+//
+//for _ in 0 ..< Int(readLine()!)! {
+//    let inputMrix = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//    let (n, m) = (inputMrix.first!, inputMrix.last!)
+//    let inputArray = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//    var array: [Int] = []
+//    var dp: [[Int]] = []
+//    var result = 0
+//    
+//    for list in inputArray {
+//        array.append(list)
+//      if array.count == m {
+//          dp.append(array)
+//          array = []
+//      }
+//    }
+//    
+//    var left_up = 0
+//    var left_down = 0
+//    var left = 0
+//    for j in 1 ..< m {
+//        for i in 0 ..< n {
+//            if i == 0 {
+//                left_up = 0
+//            } else {
+//                left_up = dp[i - 1][j - 1]
+//            }
+//            if i == n - 1 {
+//                left_down = 0
+//            } else {
+//                left_down = dp[i + 1][j - 1]
+//            }
+//            left = dp[i][j - 1]
+//            dp[i][j] = dp[i][j] + max(left_up, left, left_down)
+//        }
+//    }
+//    for i in 0 ..< n {
+//        result = max(result, dp[i][m - 1])
+//    }
+//    resultPrint.append(result)
+//}
+//
+//for result in resultPrint {
+//    print(result)
+//}
 
 /* [Test] */
 //let moveType = ["UR", "R", "DR"]
