@@ -6,6 +6,84 @@
 //
 
 // *********************
+// 다익스트라 알고리즘: 간단한 구현 방법 (Python)
+// *********************
+
+/*
+6 11
+1
+1 2 2
+1 3 5
+1 4 1
+2 3 3
+2 4 2
+3 2 3
+3 6 5
+4 3 3
+4 5 1
+5 3 1
+5 6 2
+*/
+
+/// FIXME : 다익스트라 알고리즘 구현중(확인필요)
+//let input = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//let INF = Int(1e9) // 무한을 의미하는 10억 설정
+//
+//let (n, m) = (input.first!, input.last!) // 노드의 개수, 간선의 개수 입력
+//let start = Int(readLine()!)! // 시작 노드 번호
+//
+//var graph = Array(repeating: [(Int, Int)](), count: n + 1) // 각 노드에 연결되어 있는 노드에 대한 정보를 담는 리스트 만들기
+//var visited = Array(repeating: false, count: n + 1)
+//
+//var distance = Array(repeating: INF, count: n + 1)
+//
+//for _ in 0 ..< m {
+//    let input =  readLine()!.split(separator: " ").map{ Int(String($0))! }
+//    let (a, b, c) = (input.first!, input[1], input.last!) // a선 노드에서 b선 노드로 가는 비용 c
+//    graph[a].append((b, c))
+//}
+//
+//func getSmallestNode() -> Int {
+//    var minValue = INF
+//    var index = 0
+//    for i in 1 ..< n + 1 {
+//        if distance[i] < minValue && !visited[i] {
+//            minValue = distance[i]
+//            index = i
+//        }
+//    }
+//    return index
+//}
+//
+//func dijkstra(start: Int) {
+//    distance[start] = 0
+//    visited[start] = true
+//    for j in graph[start] {
+//        distance[j.0] = j.1
+//    }
+//    for _ in 0 ..< n - 1 {
+//        let now = getSmallestNode()
+//        visited[now] = true
+//        for j in graph[now] {
+//            let cost = distance[now] + j.1
+//            if cost < distance[j.0] {
+//                distance[j.0] = cost
+//            }
+//        }
+//    }
+//}
+//
+//dijkstra(start: start)
+//
+//for i in 1 ..< n + 1 {
+//    if distance[i] == INF {
+//        print("INFINITY")
+//    } else {
+//        print(distance[i])
+//    }
+//}
+
+// *********************
 // 다이나믹 프로그래밍: 병사 배치하기: 문제 설명
 // *********************
 
@@ -14,21 +92,21 @@
 15 11 4 8 5 2 4
 */
 
-let n = Int(readLine()!)!
-var array = readLine()!.split(separator: " ").map{ Int(String($0))! }
-array.reverse()
-
-var dp = Array(repeating: 1, count: n)
-
-for i in 1 ..< n {
-    for j in 0 ..< i {
-        if array[j] < array[i] {
-            dp[i] = max(dp[i], dp[j] + 1)
-        }
-    }
-}
-
-print(n - dp.max()!)
+//let n = Int(readLine()!)!
+//var array = readLine()!.split(separator: " ").map{ Int(String($0))! }
+//array.reverse()
+//
+//var dp = Array(repeating: 1, count: n)
+//
+//for i in 1 ..< n {
+//    for j in 0 ..< i {
+//        if array[j] < array[i] {
+//            dp[i] = max(dp[i], dp[j] + 1)
+//        }
+//    }
+//}
+//
+//print(n - dp.max()!)
 
 // *********************
 // 다이나믹 프로그래밍: 금광
