@@ -6,6 +6,121 @@
 //
 
 // *********************
+// 힙 라이브러리 사용 예제
+// *********************
+
+//struct PriorityQueue<T> {
+//    private var heap: [T] = []
+//    private let ordered: (T, T) -> Bool
+//    
+//    init(ordered: @escaping (T, T) -> Bool) {
+//        self.ordered = ordered
+//    }
+//    
+//    var isEmpty: Bool {
+//        return heap.isEmpty
+//    }
+//    
+//    var count: Int {
+//        return heap.count
+//    }
+//    
+//    mutating func push(_ element: T) {
+//        heap.append(element)
+//        siftUp(at: heap.count - 1)
+//    }
+//    
+//    mutating func pop() -> T? {
+//        if heap.isEmpty {
+//            return nil
+//        }
+//        if heap.count == 1 {
+//            return heap.removeLast()
+//        }
+//        let value = heap[0]
+//        heap[0] = heap.removeLast()
+//        siftDown(at: 0)
+//        return value
+//    }
+//    
+//    private mutating func siftUp(at index: Int) {
+//        var child = index
+//        var parent = (child - 1) / 2
+//        while child > 0 && ordered(heap[child], heap[parent]) {
+//            heap.swapAt(child, parent)
+//            child = parent
+//            parent = (child - 1) / 2
+//        }
+//    }
+//    
+//    private mutating func siftDown(at index: Int) {
+//        var parent = index
+//        while true {
+//            let left = parent * 2 + 1
+//            let right = parent * 2 + 2
+//            var candidate = parent
+//            if left < heap.count && ordered(heap[left], heap[candidate]) {
+//                candidate = left
+//            }
+//            if right < heap.count && ordered(heap[right], heap[candidate]) {
+//                candidate = right
+//            }
+//            if candidate == parent {
+//                break
+//            }
+//            heap.swapAt(parent, candidate)
+//            parent = candidate
+//        }
+//    }
+//}
+ 
+// [최대 힙]
+//func heapsort(_ iterable: [Int]) -> [Int] {
+//  var h = PriorityQueue<Int>(ordered: >)  // 최소 heap
+//  var result: [Int] = []
+//  
+//  // 모든 요소를 heap에 push
+//  for value in iterable {
+//    h.push(value)
+//  }
+//  
+//  // heap에서 모든 요소를 pop
+//  while !h.isEmpty {
+//    if let value = h.pop() {
+//      result.append(value)
+//    }
+//  }
+//  
+//  return result
+//}
+// 
+//let result = heapsort([1, 3, 5, 7, 9, 2, 4, 6, 8, 0])
+//print(result)
+
+// [최소 힙]
+//func heapsort(_ iterable: [Int]) -> [Int] {
+//  var h = PriorityQueue<Int>(ordered: <)  // 최소 heap
+//  var result: [Int] = []
+//  
+//  // 모든 요소를 heap에 push
+//  for value in iterable {
+//    h.push(value)
+//  }
+//  
+//  // heap에서 모든 요소를 pop
+//  while !h.isEmpty {
+//    if let value = h.pop() {
+//      result.append(value)
+//    }
+//  }
+//  
+//  return result
+//}
+// 
+//let result = heapsort([1, 3, 5, 7, 9, 2, 4, 6, 8, 0])
+//print(result)
+
+// *********************
 // 다익스트라 알고리즘: 간단한 구현 방법 (Python)
 // *********************
 
