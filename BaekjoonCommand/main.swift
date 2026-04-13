@@ -37,12 +37,14 @@
 //
 //var distance = Array(repeating: INF, count: n + 1)
 //
+//// 모든 간선 정보를 입력 받기
 //for _ in 0 ..< m {
 //    let input =  readLine()!.split(separator: " ").map{ Int(String($0))! }
 //    let (a, b, c) = (input.first!, input[1], input.last!) // a선 노드에서 b선 노드로 가는 비용 c
 //    graph[a].append((b, c))
 //}
 //
+//// 방문하지 않은 노드 중에서, 가장 최단 거리가 짧은 노드의 번호를 반환
 //func getSmallestNode() -> Int {
 //    var minValue = INF
 //    var index = 0
@@ -75,6 +77,7 @@
 //
 //dijkstra(start: start)
 //
+//// 모든 노드로 가기 위한 최단 거리를 출력
 //for i in 1 ..< n + 1 {
 //    if distance[i] == INF {
 //        print("INFINITY")
