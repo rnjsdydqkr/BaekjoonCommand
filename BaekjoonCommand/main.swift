@@ -6,6 +6,60 @@
 //
 
 // *********************
+// 플로이드 워셜 알고리즘
+// *********************
+
+/*
+4
+7
+1 2 4
+1 4 6
+2 1 3
+2 3 7
+3 1 5
+3 4 4
+4 3 2
+*/
+
+//let INF = Int(1e9)
+//
+//var n = Int(readLine()!)!
+//var m = Int(readLine()!)!
+//var graph = Array(repeating: Array(repeating: INF, count: n + 1), count: n + 1)
+//
+//for a in 1..<n + 1 {
+//  for b in 1..<n + 1 {
+//    if a == b {
+//      graph[a][b] = 0
+//    }
+//  }
+//}
+//
+//for _ in 0..<m {
+//  let input = readLine()!.split(separator: " ").map { Int(String($0))! }
+//  var (a, b, c) = (input[0], input[1], input[2])
+//  graph[a][b] = c
+//}
+//
+//for k in 1..<n + 1 {
+//  for a in 1..<n + 1 {
+//    for b in 1..<n + 1 {
+//      graph[a][b] = min(graph[a][b], graph[a][k] + graph[k][b])
+//    }
+//  }
+//}
+//
+//for a in 1..<n + 1 {
+//  for b in 1..<n + 1 {
+//    if graph[a][b] == INF {
+//      print("INFINITY", terminator: " ")
+//    } else {
+//      print(graph[a][b], terminator: " ")
+//    }
+//  }
+//}
+
+// *********************
 // 개선된 다익스트라 알고리즘(우선순위 큐) 구현 방법
 // *********************
 
