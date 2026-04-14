@@ -6,8 +6,24 @@
 //
 
 // *********************
-// 힙 라이브러리 사용 예제
+// 개선된 다익스트라 알고리즘(우선순위 큐) 구현 방법
 // *********************
+
+/*
+6 11
+1
+1 2 2
+1 3 5
+1 4 1
+2 3 3
+2 4 2
+3 2 3
+3 6 5
+4 3 3
+4 5 1
+5 3 1
+5 6 2
+*/
 
 //struct PriorityQueue<T> {
 //    private var heap: [T] = []
@@ -73,6 +89,77 @@
 //        }
 //    }
 //}
+// 
+//// 튜플 비교 함수
+//func compareTuple(_ a: (Int, Int), _ b: (Int, Int)) -> Bool {
+//    if a.0 == b.0 {
+//        return a.1 < b.1
+//    }
+//    return a.0 < b.0
+//}
+// 
+//let INF = Int(1e9)
+// 
+//let input1 = readLine()!.split(separator: " ").map { Int(String($0))! }
+//let n = input1[0]
+//let m = input1[1]
+// 
+//let start = Int(readLine()!)!
+// 
+//// graph[i] = [(인접 노드, 가중치), ...]
+//var graph = Array(repeating: [(Int, Int)](), count: n + 1)
+// 
+//// 간선 정보 입력
+//for _ in 0 ..< m {
+//    let input = readLine()!.split(separator: " ").map { Int(String($0))! }
+//    let a = input[0]
+//    let b = input[1]
+//    let c = input[2]
+//    graph[a].append((b, c))
+//}
+// 
+//var distance = Array(repeating: INF, count: n + 1)
+// 
+//func dijkstra(start: Int) {
+//    var q = PriorityQueue<(Int, Int)>(ordered: compareTuple)
+//    q.push((0, start))
+//    distance[start] = 0
+//    
+//    while !q.isEmpty {
+//        let (dist, now) = q.pop()!
+//        
+//        // 이미 더 짧은 경로를 찾았으면 건너뛰기
+//        if distance[now] < dist {
+//            continue
+//        }
+//        
+//        // 인접한 모든 노드에 대해
+//        for (nextNode, weight) in graph[now] {
+//            let cost = dist + weight
+//            
+//            // 더 짧은 경로를 찾으면 업데이트
+//            if cost < distance[nextNode] {
+//                distance[nextNode] = cost
+//                q.push((cost, nextNode))
+//            }
+//        }
+//    }
+//}
+// 
+//dijkstra(start: start)
+// 
+//// 결과 출력
+//for i in 1 ..< n + 1 {
+//    if distance[i] == INF {
+//        print("INFINITY")
+//    } else {
+//        print(distance[i])
+//    }
+//}
+
+// *********************
+// 파이썬 힙 라이브러리 사용 예제 Swift 변환
+// *********************
  
 // [최대 힙]
 //func heapsort(_ iterable: [Int]) -> [Int] {
